@@ -19,9 +19,15 @@ app.get('/', function (req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
-// your first API endpoint...
-app.get('/api/hello', function (req, res) {
-  res.json({ greeting: 'hello API' });
+// This API call only includes the most basic headers as per FCC's assignment.
+// This can be further extended by checking out the contents of the req.headers array
+app.get('/api/whoami', function (req, res) {
+  // contents of the req.headers array
+  res.json({
+    ipaddress: req.ip,
+    language: req.headers['accept-language'],
+    software: req.headers['user-agent']
+  });
 });
 
 // listen for requests :)
